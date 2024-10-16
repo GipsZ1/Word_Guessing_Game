@@ -8,7 +8,7 @@
   }
   .scoreboard-row {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 equal columns per row */
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
   }
   .scoreboard-letter {
@@ -17,12 +17,12 @@
     border: 2px solid #d3d3d3;
     font-size: 24px;
     text-align: center;
-    line-height: 50px; /* Centers the text vertically */
+    line-height: 50px; 
     text-transform: uppercase;
     font-family: Arial, sans-serif;
     font-weight: bold;
-    user-select: none; /* Prevents text selection */
-    transition: background-color 0.3s ease; /* Smooth color change for feedback */
+    user-select: none; 
+    transition: background-color 0.3s ease;
   }
   .correct {
     background-color: green;
