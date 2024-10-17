@@ -1,6 +1,6 @@
-const letters = document.querySelectorAll('.scoreboard-letter');
-let currentGuess = ""; 
-let wordOfToday = ""; 
+const letters = document.querySelectorAll(".scoreboard-letter");
+let currentGuess = "";
+let wordOfToday = "";
 const answerLen = 5;
 
 async function fetchWord() {
@@ -10,17 +10,16 @@ async function fetchWord() {
 }
 fetchWord();
 
-document.addEventListener('keydown', function(e) {
+document.addEventListener("keydown", function (e) {
     const key = e.key;
-    if (isLetter(key)) { 
+    if (isLetter(key)) {
         addLetter(key.toUpperCase());
     } else if (key === "Enter") {
         valid();
-    }else{
+    } else {
         console.log("Invalid Letter:", key);
     }
 });
-
 
 function isLetter(key) {
     return /^[a-zA-Z]$/.test(key);
@@ -35,14 +34,23 @@ function addLetter(letter) {
 }
 
 function valid() {
-    if (currentGuess === wordOfToday) {
-        letters.forEach(letter => {
-            letter.classList.add('correct'); 
-        });
-    } else {
-        letters.forEach(letter => {
-            letter.classList.add('wrong'); 
-        });
-    }
-}
+    const guessLetters = currentGuess.split('');
+    const todayLetters = wordOfToday.split('');
 
+    guessLetters.forEach((letter, i) => {
+        if (letter === todayLetters[i]) {
+            letters[i].classList.add("correct");
+        }else if(currentGuess.length<answerLen){
+            alert("need to complete this with 5 letters")
+        }
+    });
+    guessLetters.forEach((letter, i) => {
+        if (todayLetters.includes(letter)) {
+            if (!letters[i].classList.contains("correct")) {
+                letters[i].classList.add("close");
+            }
+        } else {
+            letters[i].classList.add("wrong");
+        }
+    });
+}
